@@ -2,7 +2,7 @@
 
 React practice app, styled with Tachyons and RoboHash.
 
-To run: 
+To run:
 -Clone this repo
 -Run npm install
 -Run npm start

@@ -12,10 +12,12 @@ class App extends Component {
       searchfield: ''
     }
   }
-
+  //uses Lifecycle method to fetch the users URL
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
+      //coverts the response to JSON format
       .then(response=> response.json())
+      //returns as a new promise as the body, sets the robots from the array
       .then(users => {this.setState({ robots: users})});
   }
 

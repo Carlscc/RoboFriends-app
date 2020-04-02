@@ -1,6 +1,6 @@
 # RoboFriends-app
 
-React practice app, styled with Tachyons and RoboHash.
+React practice app: React, CSS Flex & Grid, Redux
 
 To run:
 1. Clone this repo

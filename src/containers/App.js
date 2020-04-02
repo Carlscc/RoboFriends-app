@@ -21,11 +21,14 @@ class App extends Component {
   }
 
   onSearchChange = (event) => {
+    //calls the searchfield event value
     this.setState({ searchfield: event.target.value })
   }
 
   render() {
+    //pull the robots and searchfield values from the state object (destructuring)
     const { robots, searchfield } = this.state;
+    //filters the robots, coneverts all characters to lower case, returns boolean based on if the string includes the string passed
     const filteredRobots = robots.filter(robot =>{
       return robot.name.toLowerCase().includes(searchfield.toLowerCase());
     })
@@ -35,7 +38,7 @@ class App extends Component {
         <div className='App'>
           <h1>RoboFriends</h1>
           <SearchBox searchChange={this.onSearchChange}/>
-            <CardList robots={filteredRobots} />
+           <CardList robots={filteredRobots} />
         </div>
       );
   }

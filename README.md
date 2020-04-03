@@ -1,6 +1,6 @@
 # RoboFriends-app
 
-React practice app: React, CSS Flex & Grid, Redux
+React practice app: Updating March 2020 with CSS Flex & Grid, Redux
 
 To run:
 1. Clone this repo

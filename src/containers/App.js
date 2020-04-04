@@ -1,47 +1,55 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import CardList from '../components/CardList/CardList';
 import SearchBox from '../components/Search/Searchbox';
 import './App.css';
+import { setSearchField, requestRobots } from '../actions';
+
+const mapStateToProps = state => {
+  return {
+    searchField: state.searchRobots.searchField,
+    robots: state.requestRobots.robots,
+    isPending: state.requestRobots.isPending,
+    error: state.requestRobots.error
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+    onRequestRobots: () => dispatch(requestRobots(dispatch))
+  }
+}
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
       robots: [],
-      searchfield: ''
     }
   }
-  //uses Lifecycle method to fetch the users URL
+
   componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      //coverts the response to JSON format
-      .then(response=> response.json())
-      //returns as a new promise as the body, sets the robots from the array
-      .then(users => {this.setState({ robots: users})});
+    this.props.onRequestRobots();
   }
 
-  onSearchChange = (event) => {
-    //calls the searchfield event value
-    this.setState({ searchfield: event.target.value })
-  }
 
   render() {
-    //pull the robots and searchfield values from the state object (destructuring)
-    const { robots, searchfield } = this.state;
+    const { searchField, onSearchChange, robots, isPending } = this.props;
     //filters the robots, coneverts all characters to lower case, returns boolean based on if the string includes the string passed
     const filteredRobots = robots.filter(robot =>{
-      return robot.name.toLowerCase().includes(searchfield.toLowerCase());
+      return robot.name.toLowerCase().includes(searchField.toLowerCase());
     })
-    return !robots.length ?
+    return !isPending ?
       <h1>Loading</h1> :
       (
         <div className='App'>
           <h1>RoboFriends</h1>
-          <SearchBox searchChange={this.onSearchChange}/>
-           <CardList robots={filteredRobots} />
+          <SearchBox searchChange={onSearchChange}/>
+         <CardList robots={filteredRobots} />
         </div>
       );
   }
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);

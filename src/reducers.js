@@ -9,10 +9,9 @@ import {
 const initialStateSearch = {
     searchField: ''
 }
-//gets the input of a state and action, returns a new state with what the user has entered
+
 export const searchRobots = (state=initialStateSearch, action={}) =>
 {
-    //use a switch statement instead of if, can have multiple actions that act upon the searchRobots reducer
     switch(action.type) {
         case CHANGE_SEARCH_FIELD:
             return Object.assign({}, state, {searchField: action.payload})
@@ -22,9 +21,8 @@ export const searchRobots = (state=initialStateSearch, action={}) =>
 }
 
 const initialStateRobots = {
-    isPending: false,
+    isPending: true,
     robots: [],
-    error: ''
 }
 
 export const requestRobots = (state=initialStateRobots, action={}) => {
@@ -34,7 +32,7 @@ export const requestRobots = (state=initialStateRobots, action={}) => {
         case REQUEST_ROBOTS_SUCCESS:
             return Object.assign({}, state, {robots: action.payload, isPending: false})
         case REQUEST_ROBOTS_FAILED:
-            return Object.assign({}, state, {error: action.payload, isPending: false})
+            return Object.assign({}, state, {error: action.payload})
         default:
             return state
     }

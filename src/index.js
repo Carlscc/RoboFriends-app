@@ -7,13 +7,11 @@ import thunkMiddleware from 'redux-thunk';
 import './index.css';
 import App from './containers/App.js';
 import { searchRobots, requestRobots } from './reducers';
-import * as serviceWorker from './serviceWorker';
 
 const logger = createLogger();
 
-const rootReducer = combineReducers({ searchRobots, requestRobots })
-const store =
-    createStore(rootReducer, applyMiddleware(thunkMiddleware, logger))
+const rootReducers = combineReducers({ searchRobots, requestRobots })
+const store = createStore(rootReducers, applyMiddleware(thunkMiddleware, logger))
 
 ReactDOM.render(
     <Provider store={store}>

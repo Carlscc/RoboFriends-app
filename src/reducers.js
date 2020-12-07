@@ -10,7 +10,7 @@ const initialStateSearch = {
     searchField: ''
 }
 //gets the input of a state and action, returns a new state with what the user has entered
-export const searchRobots = (state=initialState, action={}) =>
+export const searchRobots = (state=initialStateSearch, action={}) =>
 {
     //use a switch statement instead of if, can have multiple actions that act upon the searchRobots reducer
     switch(action.type) {

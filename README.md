@@ -1,6 +1,6 @@
 # RoboFriends-app
 
-React practice app: Updating March 2020 with CSS Flex & Grid, Redux
+The app fetches a list of users from the JSON placeholder API and then populates the page with user cards. For the user cards, the robohash API is used to fetch and display a random robot image for each user. The result can then be searched using the search field, which will match the user input to the user names. Redux is used for state management.
 
 To run:
 1. Clone this repo
